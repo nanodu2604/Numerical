@@ -1,6 +1,6 @@
 from sympy.utilities.lambdify import lambdify
 from sympy import parse_expr
-
+from sympy import Interval
 
 #Evaluate expression in sympy library
 class Expression:
@@ -23,5 +23,14 @@ class Expression:
     def get_variables(self):
         return self._variables
 
-
+class Interval_check:
+    def __init__(self,a,b,open_interval,close_interval):
+        self._a=a
+        self._b=b
+        self._interval=Interval(a,b,left_open=open_interval,right=close_interval)
+    def compare(self,num):
+        return self._interval.contains(num)
+        
+#class Dataset:
     
+

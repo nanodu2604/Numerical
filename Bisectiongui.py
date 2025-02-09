@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from Bisection import Bisection
+from Methods import Bisection
 from graph import Bis_Graph
 class BisectionGui(tk.Frame):
     namepage="BisectionGui"
@@ -23,7 +23,7 @@ class BisectionGui(tk.Frame):
         self._open_var=tk.BooleanVar()
         open_interval=ttk.Combobox(self,textvariable=self._open_var)
         open_interval["values"]=("[","(")
-        open_interval.bind("<<ComboboxSellected>>",self._open_var.set(open_interval.get()=="["))
+        open_interval.bind("<<ComboboxSellected>>",self._open_var.set(open_interval.get()=="("))
         open_interval.current(0)
         open_interval.grid(column=3,row=2)
         
@@ -60,7 +60,7 @@ class BisectionGui(tk.Frame):
         cal_but.bind("<Button-1>",self.show_output)
         cal_but.grid(row=5,column=3)
 
-        #Out frame set up
+        #Out put frame set up
         self.out_frame=tk.Frame(self)
         self.out_frame.grid(row=7,column=3)
         self.out_frame.grid_remove()
@@ -84,7 +84,7 @@ class BisectionGui(tk.Frame):
             if not expression:
                 raise ValueError("The Expression is empty, try again later")
             self._res_obj=Bisection(expression=expression,a=a,b=b,tol=tol)
-            self._res=self._res_obj.bisect()
+            self._res=self._res_obj.bisect(open=self._open_var.get(),close=self._close_var.get())
             template=f"""Result: \n
             {self._res}
             """
@@ -101,5 +101,6 @@ class BisectionGui(tk.Frame):
             print("Error: ",e)
     
     def show_graph(self,event):
-        canvas=ttk.Canvas(self.out_frame)
-        graph=Bis_Graph(a=self._a.get(),b=self._b.get(),res=self._res,f=self._res_obj.f(self._res))
+        graph=Bis_Graph(a=self._a.get(),b=self._b.get(),res=self._res,f=self._res_obj.f(self._res),f_string=self._expression.get(),master=self.out_frame)
+        graph.plot()
+

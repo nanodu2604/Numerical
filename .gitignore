@@ -25,4 +25,4 @@ numerical/*
 *.h5
 
 #ignore tools for testing files
-tools_for_testing/*
+test_tool/*
