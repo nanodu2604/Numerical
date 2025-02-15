@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from Bisectiongui import BisectionGui
+from Fixpointgui import FixpointGui
 from tkinter import font
 
 #set up the window
@@ -8,7 +9,7 @@ class Master(tk.Tk):
     def __init__(self,*args,**kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         #set up the window
-        self.state("zoomed")
+        #self.state("zoomed")
         self.title("Numerical analyis")
         
         #container set up
@@ -20,7 +21,7 @@ class Master(tk.Tk):
         #make frames dictionary, initial frames
         self.frames={}
         #loop through the pages to add to the frames
-        for F in (Main,BisectionGui):
+        for F in (Main,BisectionGui,FixpointGui):
             frame=F(container,self)
             self.frames[F.namepage]=frame
 
@@ -44,6 +45,9 @@ class Main(tk.Frame):
         label.grid(row = 0, column = 40, padx = 10, pady = 10) 
         button1 = ttk.Button(self, text ="Bisection",command = lambda : controller.showFrame("BisectionGui"))
         button1.grid(row = 1, column = 1, padx = 10, pady = 10)
+
+        button2 = ttk.Button(self, text ="Fixpoint",command = lambda : controller.showFrame("FixpointGui"))
+        button2.grid(row=2,column=1,padx=10,pady=10)
 
 
 

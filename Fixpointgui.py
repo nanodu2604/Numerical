@@ -2,20 +2,19 @@ import tkinter as tk
 from tkinter import ttk
 from Methods import Bisection
 from graph import Bis_Graph
-class BisectionGui(tk.Frame):
-    namepage="BisectionGui"
+class FixpointGui(tk.Frame):
+    namepage="FixpointGui"
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
-        label=ttk.Label(self,text="Bisection method")
+        label=ttk.Label(self,text="Fix-point method")
         label.grid(row = 0, column = 40, padx = 10, pady = 10)
 
         #navigation
         button1=ttk.Button(self,text="Main",command=lambda: controller.showFrame("Main"))
         button1.grid(row = 1, padx = 10, pady = 10)
-
-        button2=ttk.Button(self,text="Fixpoint",command=lambda: controller.showFrame("FixpointGui"))
+        button2=ttk.Button(self,text="Bisection",command=lambda: controller.showFrame("BisectionGui"))
         button2.grid(row = 2, padx = 10, pady = 10)
-        
+
         #make the input field
         ilable=ttk.Label(self,text="Fill interval and f(x)")
         ilable.grid(row=1,column=2)
