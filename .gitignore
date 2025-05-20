@@ -26,3 +26,6 @@ numerical/*
 
 #ignore tools for testing files
 test_tool/*
+
+#ignore the environments
+.venv
